@@ -21,10 +21,6 @@ void constructor(Queue& queue)  // функция инициализирует �
 }
 
 void push(Queue& queue, Node& node) { // добавляем элемент
-    /*Node* element = new Node;
-    element->information = node.information;
-    queue.end -> next = element;
-    queue.end = element; */
     Node* element = new Node;
     element->information = node.information;
     if (queue.begin == nullptr) {
