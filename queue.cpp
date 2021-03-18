@@ -43,9 +43,12 @@ unsigned int size(Queue& queue)   // считаем кол-во элементо
 }
 
 Node& pop(Queue& queue) {  // удаляем элемент
+    int k;
     Node* node = queue.begin;
+    k = queue.begin-> information;
     queue.begin = queue.begin->next;
-    return *node;
+    delete node;
+    return k;
 }
 
 void print( Queue& queue)    // напечатать элементы
