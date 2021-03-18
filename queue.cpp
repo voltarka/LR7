@@ -10,7 +10,7 @@ struct Queue  // создание очереди
 {
     Node* begin;
     Node* end;
-    unsigned int size;
+    unsigned int size = 0;
 };
 
 void constructor(Queue& queue)  // функция инициализирует поля структуры когда она создается
@@ -21,6 +21,7 @@ void constructor(Queue& queue)  // функция инициализирует �
 }
 
 void push(Queue& queue, Node& node) { // добавляем элемент
+    queue.size++;
     Node* element = new Node;
     element->information = node.information;
     if (queue.begin == nullptr) {
@@ -42,7 +43,8 @@ unsigned int size(Queue& queue)   // считаем кол-во элементо
     return count;
 }
 
-Node& pop(Queue& queue) {  // удаляем элемент
+int pop(Queue& queue) {  // удаляем элемент
+    queue.size--;
     int k;
     Node* node = queue.begin;
     k = queue.begin-> information;
@@ -82,8 +84,8 @@ int main() {
     print (queue);
     std::cout << std::endl;
     std::cout << "Size of queue is: " << size(queue) << std::endl;
-    Node node = pop (queue);
-    std::cout << "Popped element is: " << node.information;
+    int node = pop (queue);
+    std::cout << "Popped element is: " << node;
     std::cout << std::endl;
     print (queue);
     std::cout << std::endl;
