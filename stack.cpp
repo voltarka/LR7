@@ -13,8 +13,8 @@ struct Stack
 };
 
 void constructor (Stack& stack) { // инциализация полей структуры
-stack.end = nullptr;
-stack.size = 0;
+    stack.end = nullptr;
+    stack.size = 0;
 }
 
 unsigned int size (Stack& stack) {
@@ -28,16 +28,21 @@ unsigned int size (Stack& stack) {
 }
 
 void push (Stack& stack, Node& node) {
+    stack.size++;
     Node* element = new Node;
     element-> information = node.information;
     element->previous = stack.end;
     stack.end = element;
 }
 
-Node& pop (Stack& stack) {
+int pop (Stack& stack) {
+    stack.size--;
+    int k;
     Node* node = stack.end;
+    k = stack.end->information;
     stack.end = stack.end->previous;
-    return *node;
+    delete node;
+    return k;
 }
 
 void print (Stack& stack) {
@@ -58,21 +63,21 @@ void destructor (Stack& stack) { // очищает исп. область пам
 }
 
 int main() {
-Stack stack;
-constructor (stack);
-for (int i = 0 ;i < 10; i++) {
-    Node node;
-    node.information = i;
-    push (stack, node);
-}
-print (stack);
-std::cout << std::endl;
-std::cout << "Size of stack is: " << size(stack) << std::endl;
-Node node = pop (stack);
-std::cout << "Popped element is: " << node.information;
-std::cout << std::endl;
-print (stack);
-std::cout << std::endl;
-destructor(stack);
-return 0;
+    Stack stack;
+    constructor (stack);
+    for (int i = 0 ;i < 10; i++) {
+        Node node;
+        node.information = i;
+        push (stack, node);
+    }
+    print (stack);
+    std::cout << std::endl;
+    std::cout << "Size of stack is: " << size(stack) << std::endl;
+    int node = pop (stack);
+    std::cout << "Popped element is: " << node;
+    std::cout << std::endl;
+    print (stack);
+    std::cout << std::endl;
+    destructor(stack);
+    return 0;
 }
